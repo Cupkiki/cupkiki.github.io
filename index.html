@@ -6,66 +6,268 @@
   <title>Gut Journal — Poop & IBS Symptom Tracker</title>
   <meta name="description" content="Track your poop, bowel movements, and IBS symptoms with Gut Journal. Bristol Stool Scale diary, food tracking, smart insights, and toilet finder.">
   <meta name="keywords" content="gut journal, poop tracker, IBS tracker, bowel movement diary, Bristol Stool Scale, digestive health, stool tracker app">
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Gut Journal — Poop & IBS Symptom Tracker">
   <meta property="og:description" content="The most complete gut health diary. Track bowel movements, food triggers, and share reports with your doctor.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cupkiki.github.io">
+
+  <!-- Favicon (poop emoji) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💩</text></svg>">
+
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{--cream:#FAF6F0;--warm-brown:#8B6F47;--dark-brown:#5C4A2E;--blush:#F5E6D3;--text:#3D3024;--text-light:#7A6B5D}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
-    .hero{text-align:center;padding:80px 24px 60px;max-width:680px;margin:0 auto}
-    .app-icon{width:120px;height:120px;border-radius:26px;background:var(--blush);box-shadow:0 8px 32px rgba(139,111,71,.15);margin:0 auto 28px;display:flex;align-items:center;justify-content:center;font-size:64px;line-height:1}
-    .hero h1{font-size:2.2rem;font-weight:700;color:var(--dark-brown);margin-bottom:8px;letter-spacing:-.5px}
-    .hero .tagline{font-size:1.15rem;color:var(--text-light);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
-    .store-badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
-    .store-badges a img{height:48px;transition:transform .2s}
-    .store-badges a:hover img{transform:scale(1.05)}
-    .features{max-width:800px;margin:0 auto;padding:40px 24px 60px}
-    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
-    .feature{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:0 2px 12px rgba(139,111,71,.06);transition:transform .2s}
-    .feature:hover{transform:translateY(-2px)}
-    .feature-icon{font-size:1.6rem;margin-bottom:12px}
-    .feature h3{font-size:1rem;font-weight:600;color:var(--dark-brown);margin-bottom:6px}
-    .feature p{font-size:.9rem;color:var(--text-light);line-height:1.5}
-    .privacy-banner{text-align:center;padding:40px 24px;background:var(--blush)}
-    .privacy-banner p{font-size:1rem;color:var(--warm-brown);max-width:520px;margin:0 auto}
-    .privacy-banner strong{color:var(--dark-brown)}
-    footer{text-align:center;padding:40px 24px;border-top:1px solid rgba(139,111,71,.1)}
-    footer p{font-size:.85rem;color:var(--text-light);margin-bottom:12px}
-    footer a{color:var(--warm-brown);text-decoration:none}
-    footer a:hover{text-decoration:underline}
-    .footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
-    .footer-links a{font-size:.9rem}
-    @media(max-width:480px){.hero{padding:60px 20px 40px}.hero h1{font-size:1.8rem}.hero .tagline{font-size:1rem}.app-icon{width:96px;height:96px;border-radius:22px;font-size:52px}.features-grid{grid-template-columns:1fr;gap:16px}.feature{padding:22px 20px}}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #FAF6F0;
+      --warm-brown: #8B6F47;
+      --dark-brown: #5C4A2E;
+      --soft-gold: #D4A853;
+      --blush: #F5E6D3;
+      --text: #3D3024;
+      --text-light: #7A6B5D;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 26px;
+      box-shadow: 0 8px 32px rgba(139, 111, 71, 0.15);
+      margin: 0 auto 28px;
+      object-fit: cover;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero .tagline {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .store-badges {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .store-badges a img {
+      height: 48px;
+      transition: transform 0.2s;
+    }
+
+    .store-badges a:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Features */
+    .features {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+    }
+
+    .feature {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(139, 111, 71, 0.06);
+      transition: transform 0.2s;
+    }
+
+    .feature:hover {
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark-brown);
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* Privacy banner */
+    .privacy-banner {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--blush);
+    }
+
+    .privacy-banner p {
+      font-size: 1rem;
+      color: var(--warm-brown);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .privacy-banner strong {
+      color: var(--dark-brown);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid rgba(139, 111, 71, 0.1);
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: var(--warm-brown);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .hero { padding: 60px 20px 40px; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero .tagline { font-size: 1rem; }
+      .app-icon { width: 96px; height: 96px; border-radius: 22px; }
+      .features-grid { grid-template-columns: 1fr; gap: 16px; }
+      .feature { padding: 22px 20px; }
+    }
   </style>
 </head>
 <body>
+
   <section class="hero">
-    <div class="app-icon" role="img" aria-label="Gut Journal app icon">💩</div>
+    <img class="app-icon" src="data:image/jpeg;base64,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" alt="Gut Journal app icon" role="img">
     <h1>Gut Journal</h1>
-    <p class="tagline">The simple, private gut health diary. Track bowel movements, spot food triggers, and share insights with your doctor.</p>
+    <p class="tagline">
+      The simple, private gut health diary. Track bowel movements, spot food triggers, and share insights with your doctor.
+    </p>
     <div class="store-badges">
-      <a href="https://apps.apple.com/app/gut-journal-poop-ibs-log/id6758129818" target="_blank" rel="noopener"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store"></a>
-      <a href="https://play.google.com/store/apps/details?id=com.cupkiki.poopdiary" target="_blank" rel="noopener"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:70px;margin-top:-11px"></a>
+      <a href="https://apps.apple.com/app/gut-journal-poop-ibs-log/id6758129818" target="_blank" rel="noopener">
+        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.cupkiki.poopdiary" target="_blank" rel="noopener">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height: 70px; margin-top: -11px;">
+      </a>
     </div>
   </section>
-  <section class="features"><div class="features-grid">
-    <div class="feature"><div class="feature-icon">🩺</div><h3>Bristol Stool Scale</h3><p>Log stool type using the medical-grade Bristol scale. Track consistency, color, and details your doctor needs.</p></div>
-    <div class="feature"><div class="feature-icon">📊</div><h3>Smart Insights</h3><p>View charts and trends over time. Discover correlations between food, mood, stress, and bowel movements.</p></div>
-    <div class="feature"><div class="feature-icon">🍎</div><h3>Food & Symptom Diary</h3><p>Track what you eat alongside bowel habits. Identify triggers for bloating, constipation, and more.</p></div>
-    <div class="feature"><div class="feature-icon">🚽</div><h3>Toilet Finder</h3><p>Find nearby restrooms instantly. A lifesaver for anyone with IBS or urgent needs.</p></div>
-    <div class="feature"><div class="feature-icon">⏱️</div><h3>Bathroom Timer</h3><p>Time your visits with a discreet built-in timer. Track duration patterns and get health tips.</p></div>
-    <div class="feature"><div class="feature-icon">🐾</div><h3>Pet Tracking</h3><p>Monitor your pet's digestive health too. Log stool details for dogs to share with your vet.</p></div>
-    <div class="feature"><div class="feature-icon">📤</div><h3>Doctor Reports</h3><p>Generate PDF reports to share with your gastroenterologist. Data your doctor can actually use.</p></div>
-    <div class="feature"><div class="feature-icon">🌍</div><h3>Multilingual</h3><p>Available in English, Chinese, Spanish, and French. Track your health in your preferred language.</p></div>
-  </div></section>
-  <section class="privacy-banner"><p><strong>Your data stays on your device.</strong> No account required. No cloud uploads. Your gut health diary is completely private.</p></section>
-  <footer><div class="footer-links">
-    <a href="https://cupkiki.github.io/Poop-APP/privacy.html">Privacy Policy</a>
-    <a href="https://cupkiki.github.io/Poop-APP/terms.html">Terms of Service</a>
-    <a href="mailto:yollyzhang0509@gmail.com">Contact</a>
-  </div><p>© 2026 Cupkiki LLC. All rights reserved.</p></footer>
+
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">🩺</div>
+        <h3>Bristol Stool Scale</h3>
+        <p>Log stool type using the medical-grade Bristol scale. Track consistency, color, and details your doctor needs.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">>📊</div>
+        <h3>Smart Insights</h3>
+        <p>View charts and trends over time. Discover correlations between food, mood, stress, and bowel movements.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🍎</div>
+        <h3>Food & Symptom Diary</h3>
+        <p>Track what you eat alongside bowel habits. Identify triggers for bloating, constipation, and more.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🚽</div>
+        <h3>Toilet Finder</h3>
+        <p>Find nearby restrooms instantly. A lifesaver for anyone with IBS or urgent needs.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⏱️</div>
+        <h3>Bathroom Timer</h3>
+        <p>Time your visits with a discreet built-in timer. Track duration patterns and get health tips.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🐾</div>
+        <h3>Pet Tracking</h3>
+        <p>Monitor your pet's digestive health too. Log stool details for dogs to share with your vet.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📤</div>
+        <h3>Doctor Reports</h3>
+        <p>Generate PDF reports to share with your gastroenterologist. Data your doctor can actually use.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🌍</div>
+        <h3>Multilingual</h3>
+        <p>Available in English, Chinese, Spanish, and French. Track your health in your preferred language.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-banner">
+    <p><strong>Your data stays on your device.</strong> No account required. No cloud uploads. Your gut health diary is completely private.</p>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://cupkiki.github.io/Poop-APP/privacy.html">Privacy Policy</a>
+      <a href="https://cupkiki.github.io/Poop-APP/terms.html">Terms of Service</a>
+      <a href="mailto:yollyzhang0509@gmail.com">Contact</a>
+    </div>
+    <p>&copy; 2026 Cupkiki LLC. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
